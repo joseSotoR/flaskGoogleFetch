@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+  
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-analytics.js"></script>
+
+    <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+     
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.4.0/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.4.0/firebase-ui-auth.css" />
+    
+
+  <title>Datastore and Firebase Auth Example</title>
+  <script src="{{ url_for('static', filename='loginScript.js') }}"></script>
+
+</head>
+<body>
+  <div id="firebaseui-auth-container"></div>
+  
+  
+  
+  <div id="login-info" hidden=true>
+    <h2>Login info:</h2>
+    <div id="sign-out"></div>
+    {% if user_data %}    <dl>
+        <dt>Name</dt><dd>{{ user_data['name'] }}</dd>
+        <dt>Email</dt><dd>{{ user_data['email'] }}</dd>
+        <dt>Last 10 visits</dt><dd>
+          {% for time in times %}          <p>{{ time['timestamp'] }}</p>
+          {% endfor %} </dd>
+      </dl>
+    {% elif error_message %}    <p>Error: {{ error_message }}</p>
+    {% endif %}</div>
+    
+</body>
+</html>
